@@ -31,5 +31,5 @@ jobs:
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_ACCESS_TOKEN}}
-          heroku_app_name: "DashBoard"  # Replace with your Heroku app name
+          heroku_app_name: "main.py"  # Replace with your Heroku app name
           heroku_email: "bhatrajagyasen@gmail.com"  # Replace with your Heroku email
