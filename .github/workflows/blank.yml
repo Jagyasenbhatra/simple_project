@@ -26,10 +26,13 @@ jobs:
 
       # - name: Run tests
       #   run: python -m unittest discover  # Replace with your test command
-
+      - name: Install Heroku CLI  # Add this step
+        uses: heroku/setup-heroku@v1
+        with:
+          version: latest
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_ACCESS_TOKEN}}
-          heroku_app_name: "main.py"  # Replace with your Heroku app name
+          heroku_app_name: "main"  # Replace with your Heroku app name
           heroku_email: "bhatrajagyasen@gmail.com"  # Replace with your Heroku email
