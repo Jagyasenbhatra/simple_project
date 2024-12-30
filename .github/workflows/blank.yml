@@ -1,0 +1,35 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]  # Trigger the workflow on push to the main branch
+  pull_request:
+    branches: [ main ]  # Also trigger on pull requests to main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12.1' 
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests
+        run: python -m unittest discover  # Replace with your test command
+
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_ACCESS_TOKEN}}
+          heroku_app_name: "DashBoard"  # Replace with your Heroku app name
+          heroku_email: "bhatrajagyasen@gmail.com"  # Replace with your Heroku email
